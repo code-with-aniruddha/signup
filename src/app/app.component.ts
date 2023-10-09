@@ -1,8 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { SignupService } from './services/signup.service';
 import { SignupForm } from './models';
+import { FORM_CONTROLS } from './constants';
 
 @Component({
   selector: 'app-root',
@@ -14,11 +15,7 @@ export class AppComponent implements OnDestroy {
   notificationMessage: string = '';
   subscription!: Subscription;
 
-  form = this.fb.group({
-    firstname: ['', Validators.required],
-    lastname: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-  });
+  form = this.fb.group(FORM_CONTROLS);
 
   constructor(private fb: FormBuilder, private signupService: SignupService) {}
 
